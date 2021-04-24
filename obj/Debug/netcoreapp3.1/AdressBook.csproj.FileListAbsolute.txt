@@ -1,0 +1,13 @@
+D:\Visual_Studio\AdressBook\bin\Debug\netcoreapp3.1\AdressBook.exe
+D:\Visual_Studio\AdressBook\bin\Debug\netcoreapp3.1\AdressBook.deps.json
+D:\Visual_Studio\AdressBook\bin\Debug\netcoreapp3.1\AdressBook.runtimeconfig.json
+D:\Visual_Studio\AdressBook\bin\Debug\netcoreapp3.1\AdressBook.runtimeconfig.dev.json
+D:\Visual_Studio\AdressBook\bin\Debug\netcoreapp3.1\AdressBook.dll
+D:\Visual_Studio\AdressBook\bin\Debug\netcoreapp3.1\AdressBook.pdb
+D:\Visual_Studio\AdressBook\obj\Debug\netcoreapp3.1\AdressBook.csprojAssemblyReference.cache
+D:\Visual_Studio\AdressBook\obj\Debug\netcoreapp3.1\AdressBook.AssemblyInfoInputs.cache
+D:\Visual_Studio\AdressBook\obj\Debug\netcoreapp3.1\AdressBook.AssemblyInfo.cs
+D:\Visual_Studio\AdressBook\obj\Debug\netcoreapp3.1\AdressBook.csproj.CoreCompileInputs.cache
+D:\Visual_Studio\AdressBook\obj\Debug\netcoreapp3.1\AdressBook.dll
+D:\Visual_Studio\AdressBook\obj\Debug\netcoreapp3.1\AdressBook.pdb
+D:\Visual_Studio\AdressBook\obj\Debug\netcoreapp3.1\AdressBook.genruntimeconfig.cache
