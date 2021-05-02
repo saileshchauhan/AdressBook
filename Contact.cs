@@ -7,11 +7,12 @@ namespace AdressBook
     class Contact
     {
         
-        public String Name;
+        public string Name;
         public string Number;
         public string Lastname;
         public string Adress;
         public string City;
+        
         
         public Contact(string name, string number,string lastname,string adress,string city)
         {
@@ -21,6 +22,7 @@ namespace AdressBook
             this.Adress = adress;
             this.City = city;
         }
+        
         
     }
 }
