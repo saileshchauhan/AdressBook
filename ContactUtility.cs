@@ -73,7 +73,7 @@ namespace AdressBook
             Console.WriteLine("Enter Number");
             string number = (Console.ReadLine());
             //mylist.Add(new Contact(firstName, number,lastName,adress,city));
-            Contact contact = new Contact(firstName, lastName, adress, city, number);
+            Contact contact = new Contact(firstName, number, lastName, adress, city);
             adresBookDictionary.Add(adressBookName, contact);
             PrintOnly_AdressBook_And_Keys();
            // mylist.RemoveRange(0,1);
@@ -142,6 +142,18 @@ namespace AdressBook
             {
                 Console.WriteLine("Adress Book Name :::" + element.Key);
                 Console.WriteLine("*************************************************************************************");
+            }
+        }
+        public void Search_City_Of_Person()
+        {
+            Console.WriteLine("Enter name of person to get there City ");
+            string personName = Console.ReadLine();
+            foreach (var data in adresBookDictionary)
+            {
+                if (data.Value.Name.Equals(personName.ToLower()))
+                {
+                    Console.WriteLine("Person Name  "+data.Value.Name+"\n Found in City "+data.Value.City);
+                }
             }
         }
     }
