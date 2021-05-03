@@ -13,23 +13,48 @@ namespace AdressBook
         public void FunctionEdit()
         {
             Console.WriteLine("Edit");
-            foreach (var data in mylist)
+            foreach (var element in adresBookDictionary)
             {
-                Console.WriteLine("first Name  " + data.Name + "\nMobile Number  " + data.Number);
-                Console.WriteLine("**************************************************************");
+                Console.WriteLine("Adress Book Name :::" + element.Key);
+                Console.WriteLine("*************************************************************************************");
             }
-            Console.WriteLine("Enter first name from the list");
-            string first = Console.ReadLine();
-            foreach (Contact data in mylist)
+            Console.WriteLine("Enter Name of Adress book to Edit");
+            string AdressBookToEdit = Console.ReadLine();
+            Console.WriteLine("AdressBookName ::::" + AdressBookToEdit);
+            foreach (var data in adresBookDictionary)
             {
-                if (data.Name == first)
+                if (data.Key.Equals(AdressBookToEdit))
                 {
-                    Console.WriteLine("Choosen to edit first name  " + data.Name + "\nEnter new name");
-                    first = Console.ReadLine();
-                    data.Name = first;
+                    Console.WriteLine("first Name  " + data.Value.Name + "\nMobile Number  " + data.Value.Number + "\nLastName  " + data.Value.Lastname + "\nAdress  " + data.Value.Adress + "\nCity  " + data.Value.City);
+                    Console.WriteLine("Enter first name from the list");
+                    string first = Console.ReadLine();
+                    if (data.Value.Name.Equals(first))
+                    {
+                        Console.WriteLine("Choosen to edit first name  " + data.Value.Name + "\nEnter new name");
+                        first = Console.ReadLine();
+                        data.Value.Name = first;
+                    }
                 }
-                break;
             }
+            Console.WriteLine("*************************************************************************************");
+
+            //foreach (var data in mylist)
+            //{
+            //    Console.WriteLine("first Name  " + data.Name + "\nMobile Number  " + data.Number);
+            //    Console.WriteLine("**************************************************************");
+            //}
+            //Console.WriteLine("Enter first name from the list");
+            //string first = Console.ReadLine();
+            //foreach (Contact data in mylist)
+            //{
+            //    if (data.Name == first)
+            //    {
+            //        Console.WriteLine("Choosen to edit first name  " + data.Name + "\nEnter new name");
+            //        first = Console.ReadLine();
+            //        data.Name = first;
+            //    }
+            //    break;
+            //}
         }
 
         public void FunctionAdd()
@@ -50,10 +75,7 @@ namespace AdressBook
             //mylist.Add(new Contact(firstName, number,lastName,adress,city));
             Contact contact = new Contact(firstName, lastName, adress, city, number);
             adresBookDictionary.Add(adressBookName, contact);
-            foreach (var element in adresBookDictionary)
-            {
-                Console.WriteLine("AdressBookName ::::"+element.Key);
-            }
+            PrintOnly_AdressBook_And_Keys();
            // mylist.RemoveRange(0,1);
         }
 
@@ -72,19 +94,15 @@ namespace AdressBook
         }
         public void FunctionPrint()
         {
-            foreach (var element in adresBookDictionary)
-            {
-                Console.WriteLine("Adress Book Name :::"+element.Key);
-                Console.WriteLine("*************************************************************************************");
-            }
+            PrintOnly_AdressBook_And_Keys();
             Console.WriteLine("Enter Name of Adress to open :::::\nEnter All for printing every Adress Book");
             string readAdressBookName = Console.ReadLine();
             if (readAdressBookName.ToLower().Equals("all"))
             {
-                    foreach (var data in adresBookDictionary)
-                    {
-                        Console.WriteLine("Adress Book Name ::: "+data.Key);
-                        Console.WriteLine("first Name  " + data.Value.Name + "\nMobile Number  " + data.Value.Number + "\nLastName  " + data.Value.Lastname + "\nAdress  " + data.Value.Adress + "\nCity  " + data.Value.City);
+                foreach (var data in adresBookDictionary)
+                {
+                    Console.WriteLine("Adress Book Name ::: "+data.Key);
+                    Console.WriteLine("first Name  " + data.Value.Name + "\nMobile Number  " + data.Value.Number + "\nLastName  " + data.Value.Lastname + "\nAdress  " + data.Value.Adress + "\nCity  " + data.Value.City);
                     Console.WriteLine("*************************************************************************************");
                 }
                       
@@ -101,8 +119,30 @@ namespace AdressBook
                 }
                 Console.WriteLine("*************************************************************************************");
             }
-
-
+        }
+        public void DuplicateEntryCheck()
+        {
+            Console.WriteLine("Enter First Name ");
+            string firstName = Console.ReadLine();
+            foreach(var data in adresBookDictionary)
+            {
+                if (data.Value.Name.Equals(firstName))
+                {
+                    Console.WriteLine("Contact Entry already Exist in AdressBook :::  " + data.Key);
+                }
+                else 
+                {
+                    Console.WriteLine("No Such Contact found in any AdressBook  "+firstName);
+                }
+            }
+        }
+        public void PrintOnly_AdressBook_And_Keys()
+        {
+            foreach (var element in adresBookDictionary)
+            {
+                Console.WriteLine("Adress Book Name :::" + element.Key);
+                Console.WriteLine("*************************************************************************************");
+            }
         }
     }
 }   
