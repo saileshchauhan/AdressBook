@@ -7,8 +7,7 @@ namespace AdressBook
     class ContactUtility
     {
         public List<Contact> mylist = new List<Contact>();
-        public Dictionary<string,Contact> adresBookDictionary = new Dictionary<string,Contact>();
-       // public Dictionary<string, List<Contact> adresBookDictionary = new Dictionary<string,List<Contact>();
+        public Dictionary<string, Contact> adresBookDictionary = new Dictionary<string, Contact>();
         
         public void FunctionEdit()
         {
@@ -37,24 +36,6 @@ namespace AdressBook
                 }
             }
             Console.WriteLine("*************************************************************************************");
-
-            //foreach (var data in mylist)
-            //{
-            //    Console.WriteLine("first Name  " + data.Name + "\nMobile Number  " + data.Number);
-            //    Console.WriteLine("**************************************************************");
-            //}
-            //Console.WriteLine("Enter first name from the list");
-            //string first = Console.ReadLine();
-            //foreach (Contact data in mylist)
-            //{
-            //    if (data.Name == first)
-            //    {
-            //        Console.WriteLine("Choosen to edit first name  " + data.Name + "\nEnter new name");
-            //        first = Console.ReadLine();
-            //        data.Name = first;
-            //    }
-            //    break;
-            //}
         }
 
         public void FunctionAdd()
@@ -72,11 +53,9 @@ namespace AdressBook
             string city = Console.ReadLine();
             Console.WriteLine("Enter Number");
             string number = (Console.ReadLine());
-            //mylist.Add(new Contact(firstName, number,lastName,adress,city));
             Contact contact = new Contact(firstName, number, lastName, adress, city);
             adresBookDictionary.Add(adressBookName, contact);
             PrintOnly_AdressBook_And_Keys();
-           // mylist.RemoveRange(0,1);
         }
 
         public void FunctionDelete()
@@ -84,11 +63,11 @@ namespace AdressBook
             Console.WriteLine("Delete");
             Console.WriteLine("Enter first name");
             string first = Console.ReadLine();
-            for (int j = 0; j < mylist.Count; j++)
+            foreach(var data in adresBookDictionary)
             {
-                if ( mylist[j].Name == first)
+                if (data.Value.Name.Equals(first.ToLower()))
                 {
-                    mylist.RemoveAt(j);
+                    adresBookDictionary.Remove(data.Key);
                 }
             }
         }
@@ -156,5 +135,21 @@ namespace AdressBook
                 }
             }
         }
+        public void Find_All_Person_In_City()
+        {
+            int personCount = 0;
+            Console.WriteLine("Enter name of city to find all persons ");
+            string cityName = Console.ReadLine();
+            foreach (var data in adresBookDictionary)
+            {
+                if (data.Value.City == cityName.ToLower())
+                {
+                    Console.WriteLine("Person find in City " + data.Value.City + "\nPerson Name " + data.Value.Name);
+                    personCount++;
+                }
+            }
+            Console.WriteLine("Total No. of Persons in City "+cityName+" are "+personCount);
+        }
+
     }
 }   
