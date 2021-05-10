@@ -6,7 +6,6 @@ namespace AdressBook
 {
     class ContactUtility
     {
-        public List<Contact> mylist = new List<Contact>();
         public Dictionary<string, Contact> adresBookDictionary = new Dictionary<string, Contact>();
         
         public void FunctionEdit()
@@ -109,34 +108,6 @@ namespace AdressBook
                     }
                 }
                 Console.WriteLine("*************************************************************************************");
-            }
-        }
-        public void DuplicateEntryCheck(string uniqueName, string firstName)
-        {
-           // Console.WriteLine("Enter First Name ");
-           // string firstName = Console.ReadLine();
-           foreach(var data in adresBookDictionary)
-            {
-                if (data.Key.Equals(uniqueName))
-                {
-                    Console.WriteLine(" Adress Book Already Exist :: "+uniqueName);
-                }
-            }
-
-            foreach(var data in adresBookDictionary)
-            {
-                if (data.Value.Name.Equals(firstName))
-                {
-                    Console.WriteLine("Contact Entry already Exist in AdressBook :::  " + data.Key);
-                    FunctionAdd();
-                    return ;
-                }
-                else 
-                {
-                    Console.WriteLine("No Such Contact found in any AdressBook  "+firstName);
-                    FunctionAdd();
-                    return ;
-                }
             }
         }
         public void PrintOnly_AdressBook_And_Keys()

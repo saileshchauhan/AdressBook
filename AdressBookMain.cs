@@ -17,8 +17,8 @@ namespace AdressBook
                 {
                     Console.WriteLine("Insert your option\n 1.Addition\n 2.Name Editing\n 3.Deleting" +
 
-                        "\n 4.PrintAdressBook \n 5.Exit\n 6.DuplicateCheck\n 7.Find City Name of Person\n" +
-                        " 8.Find All Person of that City");
+                        "\n 4.PrintAdressBook \n 5.Exit\n 6.Find City Name of Person\n" +
+                        " 7.Find All Person of that City");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -39,12 +39,9 @@ namespace AdressBook
                             Console.WriteLine("You have exited from the adress Book");
                             break;
                         case 6:
-                           // utility.DuplicateEntryCheck();
-                            break;
-                        case 7:
                             utility.Search_City_Of_Person();
                             break;
-                        case 8:
+                        case 7:
                             utility.Find_All_Person_In_City();
                             break;
                         default:
