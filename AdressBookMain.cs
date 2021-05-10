@@ -39,7 +39,7 @@ namespace AdressBook
                             Console.WriteLine("You have exited from the adress Book");
                             break;
                         case 6:
-                            utility.DuplicateEntryCheck();
+                           // utility.DuplicateEntryCheck();
                             break;
                         case 7:
                             utility.Search_City_Of_Person();

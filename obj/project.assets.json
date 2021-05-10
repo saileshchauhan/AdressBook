@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\new\\.nuget\\packages\\": {}
+    "C:\\Users\\chauh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Visual_Studio\\AdressBook\\AdressBook.csproj",
+      "projectUniqueName": "C:\\Users\\chauh\\OneDrive\\Desktop\\gitIgnore\\AdressBook\\AdressBook.csproj",
       "projectName": "AdressBook",
-      "projectPath": "D:\\Visual_Studio\\AdressBook\\AdressBook.csproj",
-      "packagesPath": "C:\\Users\\new\\.nuget\\packages\\",
-      "outputPath": "D:\\Visual_Studio\\AdressBook\\obj\\",
+      "projectPath": "C:\\Users\\chauh\\OneDrive\\Desktop\\gitIgnore\\AdressBook\\AdressBook.csproj",
+      "packagesPath": "C:\\Users\\chauh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\chauh\\OneDrive\\Desktop\\gitIgnore\\AdressBook\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\new\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\chauh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

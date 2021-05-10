@@ -45,6 +45,18 @@ namespace AdressBook
             string adressBookName = Console.ReadLine();
             Console.WriteLine("Enter FirstName");
             string firstName = Console.ReadLine();
+            foreach (var data in adresBookDictionary)
+            {
+                if (data.Value.Name.Equals(firstName))
+                {
+                    Console.WriteLine("Contact Entry already Exist in AdressBook :::  " + data.Key);
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("No Such Contact found in any AdressBook  " + firstName);
+                }
+            }
             Console.WriteLine("Enter LastName");
             string lastName = Console.ReadLine();
             Console.WriteLine("Enter Adress");
@@ -99,19 +111,31 @@ namespace AdressBook
                 Console.WriteLine("*************************************************************************************");
             }
         }
-        public void DuplicateEntryCheck()
+        public void DuplicateEntryCheck(string uniqueName, string firstName)
         {
-            Console.WriteLine("Enter First Name ");
-            string firstName = Console.ReadLine();
+           // Console.WriteLine("Enter First Name ");
+           // string firstName = Console.ReadLine();
+           foreach(var data in adresBookDictionary)
+            {
+                if (data.Key.Equals(uniqueName))
+                {
+                    Console.WriteLine(" Adress Book Already Exist :: "+uniqueName);
+                }
+            }
+
             foreach(var data in adresBookDictionary)
             {
                 if (data.Value.Name.Equals(firstName))
                 {
                     Console.WriteLine("Contact Entry already Exist in AdressBook :::  " + data.Key);
+                    FunctionAdd();
+                    return ;
                 }
                 else 
                 {
                     Console.WriteLine("No Such Contact found in any AdressBook  "+firstName);
+                    FunctionAdd();
+                    return ;
                 }
             }
         }
