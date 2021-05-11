@@ -22,7 +22,5 @@ namespace AdressBook
             this.Adress = adress;
             this.City = city;
         }
-        
-        
     }
 }

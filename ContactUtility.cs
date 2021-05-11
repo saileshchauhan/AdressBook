@@ -54,6 +54,7 @@ namespace AdressBook
                 else
                 {
                     Console.WriteLine("No Such Contact found in any AdressBook  " + firstName);
+                    break;
                 }
             }
             Console.WriteLine("Enter LastName");
