@@ -18,7 +18,7 @@ namespace AdressBook
                     Console.WriteLine("Insert your option\n 1.Addition\n 2.Name Editing\n 3.Deleting" +
 
                         "\n 4.PrintAdressBook \n 5.Exit\n 6.Find City Name of Person\n" +
-                        " 7.Find All Person of that City\n 8.Sort By First Name");
+                        " 7.Find All Person of that City\n 8.Sort By First Name\n 9.Sort By City Name");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -46,6 +46,9 @@ namespace AdressBook
                             break;
                         case 8:
                             utility.Sort_By_First_Name();
+                            break;
+                        case 9:
+                            utility.Sort_By_City_Name();
                             break;
                         default:
                             Console.WriteLine("Invalid Input");

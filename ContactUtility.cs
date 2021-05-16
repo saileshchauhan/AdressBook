@@ -8,7 +8,7 @@ namespace AdressBook
     {
         public Dictionary<string, Contact> adresBookDictionary = new Dictionary<string, Contact>();
         List<Contact> contactList = new List<Contact>();
-        
+
         public void FunctionEdit()
         {
             Console.WriteLine("Edit");
@@ -69,7 +69,7 @@ namespace AdressBook
             // object created for dictionary
             Contact contact = new Contact(firstName, number, lastName, adress, city);
             // list created for UC 11-Sorting
-            contactList.Add(new Contact(firstName,number,lastName,adress,city));
+            contactList.Add(new Contact(firstName, number, lastName, adress, city));
             // dictionary created for UC6-UC10
             adresBookDictionary.Add(adressBookName, contact);
             PrintOnly_AdressBook_And_Keys();
@@ -80,11 +80,17 @@ namespace AdressBook
             Console.WriteLine("Delete");
             Console.WriteLine("Enter first name");
             string first = Console.ReadLine();
-            foreach(var data in adresBookDictionary)
+            foreach (var data in adresBookDictionary)
             {
                 if (data.Value.Name.Equals(first.ToLower()))
-                {
                     adresBookDictionary.Remove(data.Key);
+            }
+            foreach (Contact contact in contactList)
+            {
+                if (contact.Name.Equals(first.ToLower()))
+                {
+                    int index = contactList.IndexOf(contact);
+                    contactList.RemoveAt(index);
                 }
             }
         }
@@ -97,11 +103,11 @@ namespace AdressBook
             {
                 foreach (var data in adresBookDictionary)
                 {
-                    Console.WriteLine("Adress Book Name ::: "+data.Key);
+                    Console.WriteLine("Adress Book Name ::: " + data.Key);
                     Console.WriteLine("first Name  " + data.Value.Name + "\nMobile Number  " + data.Value.Number + "\nLastName  " + data.Value.Lastname + "\nAdress  " + data.Value.Adress + "\nCity  " + data.Value.City);
                     Console.WriteLine("*************************************************************************************");
                 }
-                      
+
             }
             else
             {
@@ -132,7 +138,7 @@ namespace AdressBook
             {
                 if (data.Value.Name.Equals(personName.ToLower()))
                 {
-                    Console.WriteLine("Person Name  "+data.Value.Name+"\n Found in City "+data.Value.City);
+                    Console.WriteLine("Person Name  " + data.Value.Name + "\n Found in City " + data.Value.City);
                 }
             }
         }
@@ -149,12 +155,22 @@ namespace AdressBook
                     personCount++;
                 }
             }
-            Console.WriteLine("Total No. of Persons in City "+cityName+" are "+personCount);
+            Console.WriteLine("Total No. of Persons in City " + cityName + " are " + personCount);
         }
         public void Sort_By_First_Name()
         {
             contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Name.CompareTo(contact2.Name); });
-            Console.WriteLine(string.Join(Environment.NewLine,contactList));
+            Console.WriteLine(string.Join(Environment.NewLine, contactList));
+        }
+        public void Sort_By_City_Adress_Zip_Name()
+        {
+            contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.City.CompareTo(contact2.City); });
+            contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Adress.CompareTo(contact2.Adress); });
+            contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Number.CompareTo(contact2.Number); });
+            foreach (Contact contact in contactList)
+            {
+                Console.WriteLine("contact name {0} contact city {1} contact Adress {2} contact Number {3} in sorted order ",contact.Name,contact.City,contact.Adress,contact.Number);
+            }
         }
     }
 }   
