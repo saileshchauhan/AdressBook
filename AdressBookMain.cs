@@ -48,7 +48,7 @@ namespace AdressBook
                             utility.Sort_By_First_Name();
                             break;
                         case 9:
-                            utility.Sort_By_City_Name();
+                            utility.Sort_By_City_Adress_Zip_Name();
                             break;
                         default:
                             Console.WriteLine("Invalid Input");
