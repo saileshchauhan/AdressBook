@@ -22,5 +22,9 @@ namespace AdressBook
             this.Adress = adress;
             this.City = city;
         }
+        public override string ToString()
+        {
+            return "Name of Contact in sorted order : " + Name;
+        }
     }
 }

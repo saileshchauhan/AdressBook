@@ -7,6 +7,7 @@ namespace AdressBook
     class ContactUtility
     {
         public Dictionary<string, Contact> adresBookDictionary = new Dictionary<string, Contact>();
+        List<Contact> contactList = new List<Contact>();
         
         public void FunctionEdit()
         {
@@ -64,8 +65,12 @@ namespace AdressBook
             Console.WriteLine("Enter city name");
             string city = Console.ReadLine();
             Console.WriteLine("Enter Number");
-            string number = (Console.ReadLine());
+            string number = Console.ReadLine();
+            // object created for dictionary
             Contact contact = new Contact(firstName, number, lastName, adress, city);
+            // list created for UC 11-Sorting
+            contactList.Add(new Contact(firstName,number,lastName,adress,city));
+            // dictionary created for UC6-UC10
             adresBookDictionary.Add(adressBookName, contact);
             PrintOnly_AdressBook_And_Keys();
         }
@@ -146,6 +151,10 @@ namespace AdressBook
             }
             Console.WriteLine("Total No. of Persons in City "+cityName+" are "+personCount);
         }
-
+        public void Sort_By_First_Name()
+        {
+            contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Name.CompareTo(contact2.Name); });
+            Console.WriteLine(string.Join(Environment.NewLine,contactList));
+        }
     }
 }   
