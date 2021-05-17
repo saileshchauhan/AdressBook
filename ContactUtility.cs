@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace AdressBook
 {
     class ContactUtility
     {
-        public Dictionary<string, Contact> adresBookDictionary = new Dictionary<string, Contact>();
-        List<Contact> contactList = new List<Contact>();
+         Dictionary<string, Contact> adresBookDictionary = new Dictionary<string, Contact>();
+         public List<Contact> contactList = new List<Contact>();
+        //public List<Contact> GetList()
+        //{
+        //    return contactList;
+        //}
 
         public void FunctionEdit()
         {
@@ -159,18 +164,38 @@ namespace AdressBook
         }
         public void Sort_By_First_Name()
         {
-            contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Name.CompareTo(contact2.Name); });
-            Console.WriteLine(string.Join(Environment.NewLine, contactList));
+            contactList.Sort(delegate (Contact contact1, Contact contact2) 
+            { 
+                return contact1.Name.CompareTo(contact2.Name); 
+            }
+            );
+            Console.WriteLine(string.Join(Environment.NewLine,contactList));
         }
         public void Sort_By_City_Adress_Zip_Name()
         {
             contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.City.CompareTo(contact2.City); });
-            contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Adress.CompareTo(contact2.Adress); });
-            contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Number.CompareTo(contact2.Number); });
+           // contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Adress.CompareTo(contact2.Adress); });
+           // contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Number.CompareTo(contact2.Number); });
             foreach (Contact contact in contactList)
             {
                 Console.WriteLine("contact name {0} contact city {1} contact Adress {2} contact Number {3} in sorted order ",contact.Name,contact.City,contact.Adress,contact.Number);
             }
+        }
+        public void Write_AdressBook_To_TextFile(string filePath)
+        {
+
+
+            using (StreamWriter sr = File.AppendText(filePath))
+            {
+                foreach (Contact contact in contactList)
+                {
+                    sr.WriteLine("New Contact Entry");
+                    sr.WriteLine(contact.Name + "\n" + contact.Lastname + "\n" + contact.Adress + "\n" + contact.City + "\n" + contact.Number);
+                }
+                sr.Close();
+                Console.WriteLine(File.ReadAllText(filePath));
+            }
+
         }
     }
 }   

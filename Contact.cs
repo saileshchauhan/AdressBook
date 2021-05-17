@@ -24,7 +24,7 @@ namespace AdressBook
         }
         public override string ToString()
         {
-            return "Name of Contact in sorted order : " + Name;
+            return "FirstName_ of Contact : " +this.Name+"LastName of Contact : "+this.Lastname;
         }
     }
 }
