@@ -5,8 +5,9 @@ namespace AdressBook
 {
     class AdressBookMain
     {
-        const string FILE_PATH = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\AdressBook.txt";
-        const string FILE_PATH_CSV = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\AdressBook.csv";
+        const string FILE_PATH = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\Files\AdressBook.txt";
+        const string FILE_PATH_CSV = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\Files\AdressBook.csv";
+        const string FILE_PATH_JSON = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\Files\AdressBook_To_JSON.txt";
         static void Main(string[] args)
         {
             FileOperation file = new FileOperation();
@@ -22,7 +23,7 @@ namespace AdressBook
                         "\n 4.PrintAdressBook \n 5.Exit\n 6.Find City Name of Person\n" +
                         " 7.Find All Person of that City\n 8.Sort By First Name\n 9.Sort By City Name\n" +
                         "10. Wrtie AdressBook To Text\n" +
-                        "11. Write AdressBook To CSV");
+                        "11. Write AdressBook To CSV\n 12. Write AddresBook to JSON");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -55,10 +56,13 @@ namespace AdressBook
                             utility.Sort_By_City_Adress_Zip_Name();
                             break;
                         case 10:
-                            file.Write_AdressBook_To_Text(FILE_PATH,utility.contactList);
+                            file.Write_AdressBook_To_Text(FILE_PATH, utility.contactList);
                             break;
                         case 11:
                             file.Write_AdressBook_To_CSV(FILE_PATH_CSV, utility.contactList);
+                            break;
+                        case 12:
+                            file.Write_AdressBook_To_JSON(FILE_PATH_JSON, utility.contactList);
                             break;
                         default:
                             Console.WriteLine("Invalid Input");

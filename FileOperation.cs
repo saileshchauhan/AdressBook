@@ -5,6 +5,8 @@ using System.IO;
 using System.Globalization;
 using System.Text;
 using CsvHelper.Configuration;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace AdressBook
 {
@@ -35,6 +37,18 @@ namespace AdressBook
                     contact.WriteRecords(list);
                 }
             }
+        }
+        public void Write_AdressBook_To_JSON(string filePath,List<Contact> list)
+        {
+            Newtonsoft.Json.JsonSerializer serializer = new Newtonsoft.Json.JsonSerializer();
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, list);
+                }
+            }
+            //File.AppendText(filePath)
         }
     }
 }
