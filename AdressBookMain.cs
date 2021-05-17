@@ -6,9 +6,10 @@ namespace AdressBook
     class AdressBookMain
     {
         const string FILE_PATH = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\AdressBook.txt";
+        const string FILE_PATH_CSV = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\AdressBook.csv";
         static void Main(string[] args)
         {
-
+            FileOperation file = new FileOperation();
             ContactUtility utility = new ContactUtility();
             int i = 0;
             while (i<1)
@@ -20,7 +21,8 @@ namespace AdressBook
 
                         "\n 4.PrintAdressBook \n 5.Exit\n 6.Find City Name of Person\n" +
                         " 7.Find All Person of that City\n 8.Sort By First Name\n 9.Sort By City Name\n" +
-                        "10. Wrtie AdressBook To Text");
+                        "10. Wrtie AdressBook To Text\n" +
+                        "11. Write AdressBook To CSV");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -53,17 +55,19 @@ namespace AdressBook
                             utility.Sort_By_City_Adress_Zip_Name();
                             break;
                         case 10:
-                            FileOperation file = new FileOperation();
-                            file.Write_AdressBook_To_TextFile(FILE_PATH,utility.contactList);
+                            file.Write_AdressBook_To_Text(FILE_PATH,utility.contactList);
+                            break;
+                        case 11:
+                            file.Write_AdressBook_To_CSV(FILE_PATH_CSV, utility.contactList);
                             break;
                         default:
                             Console.WriteLine("Invalid Input");
                             break;
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    Console.WriteLine("User Has entered invalid input");
+                    Console.WriteLine(e.Message);
                 }
                 
             }

@@ -9,10 +9,7 @@ namespace AdressBook
     {
          Dictionary<string, Contact> adresBookDictionary = new Dictionary<string, Contact>();
          public List<Contact> contactList = new List<Contact>();
-        //public List<Contact> GetList()
-        //{
-        //    return contactList;
-        //}
+        
 
         public void FunctionEdit()
         {
@@ -180,22 +177,6 @@ namespace AdressBook
             {
                 Console.WriteLine("contact name {0} contact city {1} contact Adress {2} contact Number {3} in sorted order ",contact.Name,contact.City,contact.Adress,contact.Number);
             }
-        }
-        public void Write_AdressBook_To_TextFile(string filePath)
-        {
-
-
-            using (StreamWriter sr = File.AppendText(filePath))
-            {
-                foreach (Contact contact in contactList)
-                {
-                    sr.WriteLine("New Contact Entry");
-                    sr.WriteLine(contact.Name + "\n" + contact.Lastname + "\n" + contact.Adress + "\n" + contact.City + "\n" + contact.Number);
-                }
-                sr.Close();
-                Console.WriteLine(File.ReadAllText(filePath));
-            }
-
         }
     }
 }   

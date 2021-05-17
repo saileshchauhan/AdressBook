@@ -7,13 +7,13 @@ namespace AdressBook
     class Contact
     {
         
-        public string Name;
-        public string Number;
-        public string Lastname;
-        public string Adress;
-        public string City;
-        
-        
+        public string Name { get; set; }
+        public string Number { get; set; }
+        public string Lastname { get; set; }
+        public string Adress { get; set; }
+        public string City { get; set; }
+
+
         public Contact(string name, string number,string lastname,string adress,string city)
         {
             this.Name = name;
