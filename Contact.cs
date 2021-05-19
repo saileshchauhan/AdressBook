@@ -14,7 +14,7 @@ namespace AdressBook
         public string City { get; set; }
 
 
-        public Contact(string name, string number,string lastname,string adress,string city)
+        public Contact(string name, string number, string lastname, string adress, string city)
         {
             this.Name = name;
             this.Number = number;
@@ -24,7 +24,7 @@ namespace AdressBook
         }
         public override string ToString()
         {
-            return "FirstName_ of Contact : " +this.Name+"LastName of Contact : "+this.Lastname;
+            return "FirstName_ of Contact : " + this.Name + "LastName of Contact : " + this.Lastname;
         }
     }
 }

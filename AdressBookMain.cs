@@ -59,7 +59,7 @@ namespace AdressBook
                             file.Write_AdressBook_To_Text(FILE_PATH, utility.contactList);
                             break;
                         case 11:
-                            file.Write_AdressBook_To_CSV(FILE_PATH_CSV, utility.contactList);
+                            file.Read_CSV_To_AddressBook(FILE_PATH_CSV, utility.contactList);
                             break;
                         case 12:
                             file.Write_AdressBook_To_JSON(FILE_PATH_JSON, utility.contactList);

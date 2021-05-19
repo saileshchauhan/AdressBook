@@ -170,13 +170,17 @@ namespace AdressBook
         }
         public void Sort_By_City_Adress_Zip_Name()
         {
-            contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.City.CompareTo(contact2.City); });
-           // contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Adress.CompareTo(contact2.Adress); });
+            //contactList.Sort((Contact contact1, Contact contact2) => { return contact1.City.CompareTo(contact2.City); } );
+            contactList.Sort(SorttingMethod);
            // contactList.Sort(delegate (Contact contact1, Contact contact2) { return contact1.Number.CompareTo(contact2.Number); });
             foreach (Contact contact in contactList)
             {
                 Console.WriteLine("contact name {0} contact city {1} contact Adress {2} contact Number {3} in sorted order ",contact.Name,contact.City,contact.Adress,contact.Number);
             }
+        }
+        int SorttingMethod(Contact contact1,Contact contact2)
+        {
+            return contact1.Name.CompareTo(contact2.Name);
         }
     }
 }   

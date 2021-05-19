@@ -5,8 +5,9 @@ using System.IO;
 using System.Globalization;
 using System.Text;
 using CsvHelper.Configuration;
-using System.Text.Json;
+//using System.Text.Json;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace AdressBook
 {
@@ -29,25 +30,30 @@ namespace AdressBook
         {
             bool append = true;
             var config = new CsvConfiguration(CultureInfo.InvariantCulture);
-            config.HasHeaderRecord = !append;
-            using (var writer = new StreamWriter(filePath,append))
+            config.HasHeaderRecord = false;
+            using var writer = new StreamWriter(filePath, append);
+            using var contact = new CsvWriter(writer, config);
+            contact.WriteRecords(list);
+        }
+        // Read Method
+        public void Read_CSV_To_AddressBook(string sourceFilePath,List<Contact> list)
+        {
+            using (var reader = new StreamReader(sourceFilePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                using (var contact = new CsvWriter(writer, config))
+                list = csv.GetRecords<Contact>().ToList();
+                foreach (Contact record in list)
                 {
-                    contact.WriteRecords(list);
+                    Console.WriteLine(record.Name);
                 }
             }
         }
         public void Write_AdressBook_To_JSON(string filePath,List<Contact> list)
         {
-            Newtonsoft.Json.JsonSerializer serializer = new Newtonsoft.Json.JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(filePath))
-            {
-                using (JsonWriter writer = new JsonTextWriter(sw))
-                {
-                    serializer.Serialize(writer, list);
-                }
-            }
+            JsonSerializer serializer = new JsonSerializer();
+            using StreamWriter sw = new StreamWriter(filePath);
+            using JsonWriter writer = new JsonTextWriter(sw);
+            serializer.Serialize(writer, list);
             //File.AppendText(filePath)
         }
     }
