@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
-using System.Text;
 using CsvHelper.Configuration;
-//using System.Text.Json;
 using Newtonsoft.Json;
 using System.Linq;
 
@@ -19,42 +17,60 @@ namespace AdressBook
             {
                 foreach (Contact contact in list)
                 {
-                    sr.WriteLine("New Contact Entry");
-                    sr.WriteLine(contact.Name + "\n" + contact.Lastname + "\n" + contact.Adress + "\n" + contact.City + "\n" + contact.Number);
+                    sr.WriteLine(contact.Name+" "+contact.Number+ " " +contact.Lastname+ " " + contact.Adress+ " " + contact.City);
                 }
                 sr.Close();
-                Console.WriteLine(File.ReadAllText(filePath));
+               // Console.WriteLine(File.ReadAllText(filePath));
             }
         }
         public void Write_AdressBook_To_CSV(string filePath, List<Contact> list)
         {
-            bool append = true;
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture);
-            config.HasHeaderRecord = false;
-            using var writer = new StreamWriter(filePath, append);
-            using var contact = new CsvWriter(writer, config);
-            contact.WriteRecords(list);
-        }
-        // Read Method
-        public void Read_CSV_To_AddressBook(string sourceFilePath,List<Contact> list)
-        {
-            using (var reader = new StreamReader(sourceFilePath))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            using (var writer = new StreamWriter(filePath))
+            using (var csvExport = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                list = csv.GetRecords<Contact>().ToList();
-                foreach (Contact record in list)
-                {
-                    Console.WriteLine(record.Name);
-                }
+                csvExport.WriteRecords(list);
             }
         }
-        public void Write_AdressBook_To_JSON(string filePath,List<Contact> list)
+        public void Write_AdressBook_To_JSON(string filePath, List<Contact> list)
         {
             JsonSerializer serializer = new JsonSerializer();
             using StreamWriter sw = new StreamWriter(filePath);
             using JsonWriter writer = new JsonTextWriter(sw);
             serializer.Serialize(writer, list);
-            //File.AppendText(filePath)
+            File.AppendText(filePath);
         }
+        // Read Method
+        public List<Contact> Read_CSV_To_AddressBook(string sourceFilePath)
+        {
+            using (var reader = new StreamReader(sourceFilePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var list = csv.GetRecords<Contact>().ToList();
+                foreach (var record in list)
+                {
+                    Console.WriteLine(record.Name);
+                }
+                return list;
+            }
+        }
+        public List<Contact> Read_JSON_To_AddressBook(string sourceFiePath)
+        {
+            string contentOf_Json = File.ReadAllText(sourceFiePath);
+            List<Contact> list = JsonConvert.DeserializeObject<List<Contact>>(contentOf_Json);
+            return list;
+        }
+        public List<Contact> Read_Text_To_AddressBook(string sourceFiePath)
+        {
+            List<Contact> list = new List<Contact>();
+            string[] allLines = File.ReadAllLines(sourceFiePath);
+            foreach(var line in allLines)
+            {
+                string[] word = line.Split(" ");
+                list.Add(new Contact(word[0], word[1], word[2], word[3], word[4]));
+            }
+            return list;
+            
+        }
+        
     }
 }

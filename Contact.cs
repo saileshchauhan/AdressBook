@@ -14,13 +14,13 @@ namespace AdressBook
         public string City { get; set; }
 
 
-        public Contact(string name, string number, string lastname, string adress, string city)
+        public Contact(string Name, string Number, string Lastname, string Adress, string City)
         {
-            this.Name = name;
-            this.Number = number;
-            this.Lastname = lastname;
-            this.Adress = adress;
-            this.City = city;
+            this.Name = Name;
+            this.Number = Number;
+            this.Lastname = Lastname;
+            this.Adress = Adress;
+            this.City = City;
         }
         public override string ToString()
         {
