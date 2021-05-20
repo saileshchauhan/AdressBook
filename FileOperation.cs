@@ -13,10 +13,7 @@ namespace AdressBook
     {
         public void Write_AdressBook_To_Text(string filePath,List<Contact> list)
         {
-            if (!File.Exists(filePath))
-            {
-                throw new Exception("The Entered File Path don't Exist");
-            }
+            CheckForFileExistence(filePath);
             using (StreamWriter sr = File.AppendText(filePath))
             {
                 foreach (Contact contact in list)
@@ -29,10 +26,7 @@ namespace AdressBook
         }
         public void Write_AdressBook_To_CSV(string filePath, List<Contact> list)
         {
-            if (!File.Exists(filePath))
-            {
-                throw new Exception("The Entered File Path don't Exist");
-            }
+            CheckForFileExistence(filePath);
             using (var writer = new StreamWriter(filePath))
             using (var csvExport = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
@@ -42,10 +36,7 @@ namespace AdressBook
         public void Write_AdressBook_To_JSON(string filePath, List<Contact> list)
         {
             //Vaidation
-            if (!File.Exists(filePath))
-            {
-                throw new Exception("The Entered File Path don't Exist");
-            }
+            CheckForFileExistence(filePath);
             JsonSerializer serializer = new JsonSerializer();
             using StreamWriter sw = new StreamWriter(filePath);
             {
@@ -58,10 +49,7 @@ namespace AdressBook
         // Read Method
         public List<Contact> Read_CSV_To_AddressBook(string sourceFilePath)
         {
-            if (!File.Exists(sourceFilePath))
-            {
-                throw new Exception("The Entered File Path don't Exist");
-            }
+            CheckForFileExistence(sourceFilePath);
             using (var reader = new StreamReader(sourceFilePath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
@@ -73,24 +61,18 @@ namespace AdressBook
                 return list;
             }
         }
-        public List<Contact> Read_JSON_To_AddressBook(string sourceFiePath)
+        public List<Contact> Read_JSON_To_AddressBook(string sourceFilePath)
         {
-            if (!File.Exists(sourceFiePath))
-            {
-                throw new Exception("The Entered File Path don't Exist");
-            }
-            string contentOf_Json = File.ReadAllText(sourceFiePath);
+            CheckForFileExistence(sourceFilePath);
+            string contentOf_Json = File.ReadAllText(sourceFilePath);
             List<Contact> list = JsonConvert.DeserializeObject<List<Contact>>(contentOf_Json);
             return list;
         }
-        public List<Contact> Read_Text_To_AddressBook(string sourceFiePath)
+        public List<Contact> Read_Text_To_AddressBook(string sourceFilePath)
         {
-            if (!File.Exists(sourceFiePath))
-            {
-                throw new Exception("The Entered File Path don't Exist");
-            }
+            CheckForFileExistence(sourceFilePath);
             List<Contact> list = new List<Contact>();
-            string[] allLines = File.ReadAllLines(sourceFiePath);
+            string[] allLines = File.ReadAllLines(sourceFilePath);
             foreach(var line in allLines)
             {
                 string[] word = line.Split(" ");
@@ -98,6 +80,14 @@ namespace AdressBook
             }
             return list;
             
+        }
+        //Validation Method
+        public void CheckForFileExistence(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                throw new Exception("The Entered File Path don't Exist");
+            }
         }
         
     }
