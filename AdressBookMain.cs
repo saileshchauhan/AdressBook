@@ -8,15 +8,18 @@ namespace AdressBook
         const string FILE_PATH = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\Files\AdressBook.txt";
         const string FILE_PATH_CSV = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\Files\AdressBook.csv";
         const string FILE_PATH_JSON = @"C:\Users\chauh\OneDrive\Desktop\gitIgnore\AdressBook\Files\AdressBook.json";
+        
         static void Main(string[] args)
         {
-            FileOperation file = new FileOperation();
+            var operation = new FileOperation();
+            DataBaseReadWrite dataBase = new DataBaseReadWrite();
             ContactUtility utility = new ContactUtility
             {
-               //contactList = file.Read_CSV_To_AddressBook(FILE_PATH_CSV)
-               //contactList = file.Read_JSON_To_AddressBook(FILE_PATH_JSON)
-                 contactList = file.Read_Text_To_AddressBook(FILE_PATH)
+               //contactList = operation.Read_CSV_To_AddressBook(FILE_PATH_CSV)
+               //contactList = json.Read_JSON_To_AddressBook(FILE_PATH_JSON)
+               //contactList = text.Read_Text_To_AddressBook(FILE_PATH)
             };
+            utility.contactList = dataBase.ReadFromDataBase(utility.contactList);
             int i = 0;
             while (i<1)
             {
@@ -33,9 +36,10 @@ namespace AdressBook
                     {
                         case 1:
                             utility.FunctionAdd();
-                            file.Write_AdressBook_To_Text(FILE_PATH, utility.contactList);
-                            file.Write_AdressBook_To_CSV(FILE_PATH_CSV, utility.contactList);
-                            file.Write_AdressBook_To_JSON(FILE_PATH_JSON, utility.contactList);
+                            dataBase.WriteToDataBase(utility.contactList);
+                            //operation.Write_AdressBook_To_Text(FILE_PATH, utility.contactList);
+                            //operation.Write_AdressBook_To_CSV(FILE_PATH_CSV, utility.contactList);
+                            //operation.Write_AdressBook_To_JSON(FILE_PATH_JSON, utility.contactList);
                             break;
                         case 2:
                             utility.FunctionEdit();
